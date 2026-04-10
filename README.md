@@ -1,6 +1,4 @@
-# Copilot Three-Agent Team v6.5
-
-v6.5 keeps the v6.4 operating model and additionally hardens Bug · Ivy for root-cause analysis and Architect · Art for prevention-aware planning.
+# Copilot Multi-Agent Team 
 
 Goal:
 - keep specialized squads
