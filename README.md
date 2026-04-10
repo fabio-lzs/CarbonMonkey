@@ -1,4 +1,4 @@
-# Copilot Multi-Agent Team 
+# CarbonMonkey Factory a Copilot Multi-Agent Team 
 
 Goal:
 - keep specialized squads
@@ -8,6 +8,64 @@ Goal:
 - use the Router only as a classifier and prompt improver
 - make the internal system globally portable
 - catch more async, lifecycle, cleanup, and concurrency bugs before they ship
+
+## Quick start
+1. Copy the `.github/` folder from this repository into the root of your project.
+2. Open the project folder in VS Code.
+3. Enable this setting in `settings.json`:
+
+```json
+"chat.customAgentInSubagent.enabled": true
+```
+
+4. Run **Developer: Reload Window**.
+5. Open a new Copilot chat.
+6. Choose a squad directly for normal work, or use `/work` when you want routing help plus a rewritten prompt.
+
+## How to use
+### Direct squad workflow (recommended)
+Pick the squad that matches the job and talk to it directly.
+
+Examples:
+
+```text
+Bug Squad
+After implementing Firebase login, the screen stays gray after sign-in and there are no console errors. Find the root cause and fix it.
+```
+
+```text
+Feature Squad
+Add list sharing so the owner can invite other users by email and choose whether they can edit or only view.
+```
+
+```text
+Project Squad
+Create a new MVP from scratch for a collaborative shopping list with Firebase, Google login, and PWA support.
+```
+
+### Router workflow (optional)
+Use `/work` only when you are not sure which squad should handle the request.
+
+Example:
+
+```text
+/work
+I want to improve this flow but I am not sure whether this is a bug, a refactor, or a feature.
+```
+
+Expected result:
+- request classification
+- recommended squad
+- improved prompt ready to paste into that squad
+
+### Choosing the right squad
+- **Bug Squad**: bugs, regressions, broken behavior, root-cause analysis
+- **Feature Squad**: new functionality in an existing project
+- **Project Squad**: greenfield, bootstrap, new MVP, project from scratch
+- **Refactor Squad**: structural cleanup without intended behavior change
+- **Performance Squad**: slowness, bottlenecks, render/query/runtime performance
+- **Integration Squad**: APIs, auth providers, webhooks, SDKs, external services
+- **Docs Squad**: README, onboarding, technical documentation, usage guides
 
 ## Recommended usage
 - **Default:** select the squad directly
@@ -37,14 +95,6 @@ The Router **does not delegate**.
 - Performance Squad: Pax -> Bob -> Kyle
 - Integration Squad: Iris -> Bob -> Kyle
 - Docs Squad: Dora -> Kyle
-
-
-## What changed in v6.5
-- Bug · Ivy now distinguishes symptom, trigger, broken transition/lifecycle step, and likely root cause.
-- Ivy now ranks alternative plausible causes and reports evidence plus confidence instead of stopping at the first suspicious area.
-- Architect · Art now plans with failure prevention in mind, not only happy-path delivery.
-- Art now explicitly includes guardrails for async, lifecycle, cleanup, ownership, timeout, and stale-result risks when relevant.
-- This reduces the chance of Bob implementing a plan that is technically coherent but fragile in runtime behavior.
 
 ## Runtime correctness scope
 This hardening is not only about Promises. It now applies to:
